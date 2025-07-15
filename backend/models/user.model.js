@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Profiler } from "react";
+import React from "react";
 const scema = new mongoose.Schema({
     fullname: {
         type: String,
