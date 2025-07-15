@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import React from "react";
-const scema = new mongoose.Schema({
+
+const userSchema = new mongoose.Schema({
     fullname: {
         type: String,
         required: true,
