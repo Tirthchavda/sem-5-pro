@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
-import userRoutes from "./routes/user.route.js";
+import userRoutes from "./routes/user.route.js"; // ✅ correct (matches actual file)
 dotenv.config({});
 
 const app = express();
@@ -32,7 +32,7 @@ app.use("/api/v1/user", userRoutes);
 
 // Make sure your .env file has PORT=8000
 app.listen(PORT,()=>{
-    connectDB(); // Ensure connectDB logs "mongodb connected successfully" inside its implementation
+   // connectDB(); // Ensure connectDB logs "mongodb connected successfully" inside its implementation
     console.log(`Server running at port ${PORT}`);
     
 })
