@@ -32,7 +32,7 @@ app.use("/api/v1/user", userRoutes);
 
 // Make sure your .env file has PORT=8000
 app.listen(PORT,()=>{
-   // connectDB(); // Ensure connectDB logs "mongodb connected successfully" inside its implementation
+    connectDB(); // Ensure connectDB logs "mongodb connected successfully" inside its implementation
     console.log(`Server running at port ${PORT}`);
     
 })
