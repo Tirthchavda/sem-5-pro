@@ -35,7 +35,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const {email, password, role} = req.body;
-        if(!fullname || !email || !password || !role) {
+        if( !email || !password || !role) {
             return res.status(400).json({ message: "Somthing is missing",
             success: false 
         });    
@@ -52,6 +52,20 @@ export const login = async (req, res) => {
         if (user.role !== role) {
             return res.status(400).json({ message: "Account doesn't exist with current role.", success: false });
         };
+
+        //skill and profilephoto
+        if (!user.profile) {
+            user.profile = {
+                bio: "",
+                skills: "",
+                resume: "",
+                resumeoriginalname: "",
+                profilephoto: ""
+            };
+        }
+    
+
+        // Generate JWT token
 
         const tokenData = {
             userId:user._id,
