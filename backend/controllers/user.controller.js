@@ -91,6 +91,8 @@ export const login = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 }
+    
+
 export const logout = async (req, res) => {
     try{
         return res.status(200).cookie("token", "", {maxAge: 0, httpOnly: true, sameSite: 'strict'}).json({
@@ -107,14 +109,15 @@ export const updateProfile = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, bio, skills} = req.body;
         const file = req.file; // Assuming you are using multer for file uploads
-        if(!fullname || !email || !phoneNumber || !bio || !skills) {
-            return res.status(400).json({ message: "Somthing is missing",
-            success: false });
-        };
+      
 
         //cloud
+        let skillsArray;
+        if(skills){
+            const skillsArray = skills.split(',');
 
-        const skillsArray = skills.split(',').map(skill => skill.trim());
+        }
+
         const userId = req.id; //middelware authentication
         let user = await User.findById(userId);
         if (!user) {
@@ -122,12 +125,22 @@ export const updateProfile = async (req, res) => {
         }
         
         // Update user data
-        user.fullname = fullname;
-        user.email = email;
-        user.phoneNumber = phoneNumber;
-        user.profile.bio = bio;
-        user.profile.skills = skillsArray;
+        if(fullname) user.fullname = fullname;
+        if(email) user.email = email;
+        if(phoneNumber) user.phoneNumber = phoneNumber;
+        if (bio) user.profile.bio = bio;
+        if(skills) user.profile.skills = skillsArray;
 
+           if (!user.profile) {
+            user.profile = {
+                bio: "",
+                skills: "",
+                resume: "",
+                resumeoriginalname: "",
+                profilephoto: ""
+            };
+        }
+    
         // resume comes leter here..
 
 

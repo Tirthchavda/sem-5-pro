@@ -4,6 +4,7 @@ const companyschema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+        unique: true, // Ensure company names are unique
     },
     description: {
         type: String,
@@ -25,3 +26,5 @@ const companyschema = new mongoose.Schema({
         required: true,
     },
 }, { timestamps: true });
+
+export const Company = mongoose.model('Company', companyschema);
