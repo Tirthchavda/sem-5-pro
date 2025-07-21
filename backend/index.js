@@ -38,15 +38,4 @@ app.listen(PORT,()=>{
     connectDB(); // Ensure connectDB logs "mongodb connected successfully" inside its implementation
     console.log(`Server running at port ${PORT}`);
   
-    
-
-    //this is free work
-    console.log("Free work done by @sachinmehta_");
-
-
-
-
-
-
-
 })
