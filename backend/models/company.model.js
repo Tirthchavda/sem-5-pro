@@ -28,3 +28,5 @@ const companyschema = new mongoose.Schema({
 }, { timestamps: true });
 
 export const Company = mongoose.model('Company', companyschema);
+
+console.log("Company model loaded successfully");
