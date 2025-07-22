@@ -8,7 +8,7 @@ const companyschema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
+      //  required: true,
     },
     website:{
         type: String,
@@ -18,7 +18,7 @@ const companyschema = new mongoose.Schema({
     },
     logo: {
         type: String, // URL to the logo image
-        default: ""
+      //  default: ""
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -28,5 +28,3 @@ const companyschema = new mongoose.Schema({
 }, { timestamps: true });
 
 export const Company = mongoose.model('Company', companyschema);
-
-console.log("Company model loaded successfully");

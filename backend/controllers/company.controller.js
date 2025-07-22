@@ -1,16 +1,17 @@
-import { company } from "../models/company.model.js";
+import { Company } from "../models/company.model.js";
 import { User } from "../models/user.model.js";
 
 export const registercompany = async (req, res) => {
   try {
-    const { companyName } = req.body;
+    const { companyName, description, website,location,logo } = req.body;
     if (!companyName) {
       return res
         .status(400)
         .json({ message: "Company name is required", success: false });
     }
+
     let company = await Company.findOne({ name: companyName });
-    if (company) {
+    if ( company) {
       return res
         .status(400)
         .json({
@@ -21,7 +22,12 @@ export const registercompany = async (req, res) => {
     company = await Company.create({
       name: companyName, // Add other fields as necessary
       userId: req.id, // Assuming req.id is the authenticated user's ID
+      description,
+      website,
+      location,
+      logo, // Assuming logo is a URL or path to the logo
     });
+
 
     return res
       .status(201)
