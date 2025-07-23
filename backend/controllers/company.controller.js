@@ -49,6 +49,14 @@ export const getCompany = async (req, res) => {
         .status(404)
         .json({ message: "Company not found", success: false });
     }
+
+    return res
+      .status(200)
+      .json({
+        company,
+        success: true
+      });
+
   } catch (error) {
     console.error("Error in getCompany:", error);
   }
