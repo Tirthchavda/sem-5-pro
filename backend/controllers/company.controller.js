@@ -42,20 +42,19 @@ export const registercompany = async (req, res) => {
 };
 export const getCompany = async (req, res) => {
   try {
-    const userId = req.id; // Get the authenticated user's ID from the request
-    const company = await Company.findOne({ userId });
-    if (!company) {
-      return res
-        .status(404)
-        .json({ message: "Company not found", success: false });
-    }
+    const userId = req.id; // Get the authenticated user's ID from middleware
+const companies = await Company.find({ userId }); // Corrected
 
-    return res
-      .status(200)
-      .json({
-        company,
-        success: true
-      });
+    if (!companies || companies.length === 0) {
+  return res
+    .status(404)
+    .json({ message: "No companies found", success: false });
+}
+
+    return res.status(200).json({
+  companies,
+  success: true,
+});
 
   } catch (error) {
     console.error("Error in getCompany:", error);
@@ -91,7 +90,7 @@ export const updateCompany = async (req, res) => {
 
     const updateData = { name, description, website, location };
 
-    const comapny = await Company.findByIdAndUpdate(req.params.id, updateData, {
+    const company = await Company.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
     });
 
@@ -106,7 +105,6 @@ export const updateCompany = async (req, res) => {
       .json({
         message: "Company updated successfully",
         success: true,
-        company,
       });
       
 
