@@ -37,13 +37,13 @@ export const postjob = async (req, res) => {
     const job = await Job.create({
       title,
       description,
-      requirements: skills          ,
+      requirements: skills,
       salary,
       location,
       jobtype,
       experienceLevel: experience,
       position,
-      created_by: companyId, // Assuming req.id is the authenticated user's ID
+      created_by:userId, // Assuming req.id is the authenticated user's ID
       company: companyId, // Assuming companyId is the ID of the company
     });
     return res
@@ -65,7 +65,9 @@ export const getAlljobs = async (req, res) => {
       ],
     };
 
-    const jobs = await Job.find(query);
+    const jobs = await Job.find(query).populate({
+        path:"company",
+    }).sort({ createdAt: -1 });
     if (!jobs) {
       return res.status(404).json({ message: "No jobs found", success: false });
     }
@@ -93,7 +95,7 @@ export const getJobById = async (req, res) => {
 export const getAdminJobs = async (req, res) => {
   try {
     const admin = req.id; // Get the authenticated user's ID from middleware
-    const jobs = await Job.find({ created_by: adminId });
+    const jobs = await Job.find({ created_by: admin });
     if (!jobs) {
       return res.status(404).json({ message: "No jobs found", success: false });
     }
