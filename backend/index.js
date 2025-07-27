@@ -6,6 +6,8 @@ import connectDB from "./utils/db.js";
 import userRoutes from "./routes/user.route.js"; // ✅ correct (matches actual file)
 import companyRoutes from "./routes/company.route.js"; // ✅ correct (matches actual file)
 import jobRoutes from "./routes/job.route.js"; // ✅ correct (matches actual file)
+import applicationRoutes from "./routes/application.route.js"; // ✅ correct (matches actual file)
+
 
 dotenv.config({});
 
@@ -30,6 +32,7 @@ const PORT = process.env.PORT || 8000;
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/company", companyRoutes);
 app.use("/api/v1/job", jobRoutes);
+app.use("/api/v1/application", applicationRoutes);
 
 //"http://localhost:8000/api/v1/user/register"
 //"http://localhost:8000/api/v1/user/login"
