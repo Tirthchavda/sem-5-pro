@@ -51,7 +51,8 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: none;
 }
 
 @media (prefers-color-scheme: light) {
@@ -123,11 +124,16 @@ button:focus-visible {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-  * {
+
+ div, section, main, article, header, footer {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
+}
+button {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
