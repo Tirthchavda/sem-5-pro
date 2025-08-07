@@ -64,7 +64,7 @@ button:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #f4f0f0;
   }
 }
 
@@ -132,8 +132,10 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+/*
 button {
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
 }
+*/

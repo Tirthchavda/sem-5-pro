@@ -4,3 +4,4 @@ export default {
     autoprefixer: {},
   },
 }
+// tailwind.config.js
